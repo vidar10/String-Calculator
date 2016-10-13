@@ -1,7 +1,7 @@
 package tdd;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Calculator
 {
@@ -27,10 +27,22 @@ public class Calculator
       
     private static int sum(String[] numbers)
     {
+    	List<Integer> negativeNumbers = new ArrayList<>();
+    	boolean hasNegative = false;
  	    int total = 0;
+
         for(String number : numbers){
+        	if(toInt(number) < 0)
+        	{
+        		negativeNumbers.add(toInt(number));
+        		hasNegative = true;
+        	}
 		    total += toInt(number);
 		}
-		return total;
+		
+		if(!hasNegative)
+			return total;
+		else
+			throw new IllegalArgumentException("Negatives not allowed: " + negativeNumbers.toString());
 	}
 }
