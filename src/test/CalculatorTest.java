@@ -78,4 +78,16 @@ public class CalculatorTest
     {
         assertEquals(1002, Calculator.add("1000,2"));
     }
+
+    @Test
+    public void testwithDifferentDelimiter()
+    {
+        assertEquals(3, Calculator.add("//;\n1;2"));
+    }
+
+    @Test
+    public void testwithDifferentDelimiterTwo()
+    {
+        assertEquals(10, Calculator.add("//:\n1:2:3:4"));
+    }
 }

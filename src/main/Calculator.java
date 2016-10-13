@@ -7,10 +7,25 @@ public class Calculator
 {
 	public static int add(String numbers)
 	{
+		String delimiter = "true";
+		boolean hasDelimiter = false;
+		if(numbers.startsWith("//"))
+		{
+			delimiter = numbers.split("\n")[0];
+			String[] arr = delimiter.split("");
+			String[] numbersArr = numbers.split("\\n");
+
+			for(int i = 0; i < arr.length; i++)
+				delimiter = arr[i];
+
+			numbers = numbersArr[1];
+			hasDelimiter = true;
+		}
+
 		if(numbers.equals(""))
 			return 0;
-		else if(numbers.contains(",") || numbers.contains("\n"))
-			return sum(splitNumbers(numbers));
+		else if(numbers.contains(",") || numbers.contains("\n") || hasDelimiter)
+			return sum(splitNumbers(numbers, delimiter));
 		else
 			return 1;
 	}
@@ -20,9 +35,13 @@ public class Calculator
 		return Integer.parseInt(number);
 	}
 
-	private static String[] splitNumbers(String numbers)
+	private static String[] splitNumbers(String numbers, String delimiter)
 	{
-	    return numbers.split(",|\\n");
+		if(delimiter == "true")
+			return numbers.split("(,|\\n)");
+		else
+		    return numbers.split(delimiter);			
+
 	}
       
     private static int sum(String[] numbers)
