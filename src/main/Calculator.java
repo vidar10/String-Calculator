@@ -37,7 +37,8 @@ public class Calculator
         		negativeNumbers.add(toInt(number));
         		hasNegative = true;
         	}
-		    total += toInt(number);
+        	if(toInt(number) <= 1000)
+		    	total += toInt(number);
 		}
 		
 		if(!hasNegative)

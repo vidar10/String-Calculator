@@ -66,4 +66,16 @@ public class CalculatorTest
             assertEquals("Negatives not allowed: [-4, -5]", ex.getMessage());
         }
     }
+
+    @Test
+    public void testLargerNumbers()
+    {
+        assertEquals(2, Calculator.add("1001,2"));
+    }
+
+    @Test
+    public void testLargerNumbersThatWork()
+    {
+        assertEquals(1002, Calculator.add("1000,2"));
+    }
 }
